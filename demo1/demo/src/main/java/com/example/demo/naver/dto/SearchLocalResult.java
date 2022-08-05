@@ -14,7 +14,6 @@ public class SearchLocalResult {
     private int total;//검색결과문서의 총개수
     private int start;//검색결과 문서중 문서의 시작점
     private int display;//검색결과의개수
-    private String category;//검색결과 업체, 기관의 분류정보
     private List<SearchLocalItem> items;//JSON 포멧으로 items 속성으로 표현. 개별 검색결과
 
 
@@ -28,6 +27,8 @@ public class SearchLocalResult {
         private String address;
         private int mapx;
         private int mapy;
+        private String category;//검색결과 업체, 기관의 분류정보
+
 
     }
 }

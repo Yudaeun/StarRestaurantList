@@ -19,7 +19,7 @@ public class NaverClientTest {
         search.setQuery("치킨");
 
         var result=naverClient.localSearch(search);
-        System.out.println(result);
+        System.out.println(result.getItems().stream().findFirst().get().getCategory());
     }
 
     @Test
