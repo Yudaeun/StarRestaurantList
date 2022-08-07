@@ -10,3 +10,10 @@ naver:
       local: "https://openapi.naver.com/v1/search/local.json"
 server:
   port: 8091
+spring:
+
+  mvc:
+
+    pathmatch:
+
+      matching-strategy: ant_path_matcher

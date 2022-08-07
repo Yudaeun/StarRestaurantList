@@ -31,6 +31,7 @@ abstract public class MemoryDBAbstract<T extends DbEntity> implements MemoryDB<T
             var preIndex=optionalEntity.get().getIndex();
             entity.setIndex(preIndex);
             deleteById(preIndex);
+
             db.add(entity);
             return entity;
         }
