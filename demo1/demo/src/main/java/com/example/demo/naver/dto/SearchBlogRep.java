@@ -6,13 +6,16 @@ import lombok.NoArgsConstructor;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.util.Random;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class SearchBlogRep {
+    Random random=new Random();
     private String query="";
-    private int display=30;
-    private int start=1;
+    private int display=5;
+    private int start=random.nextInt(500);
     private String sort="sim";
 
     public MultiValueMap<String,String> toMultiValueMap(){
