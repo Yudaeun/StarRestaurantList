@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.wishlist.dto.ReceiptListDto;
 import com.example.demo.wishlist.dto.WishListDto;
 import com.example.demo.wishlist.service.WishListService;
 import lombok.RequiredArgsConstructor;
@@ -51,7 +52,7 @@ public class ApiController {
     }
 
     @GetMapping("/recommend")
-    public WishListDto receipt(){
+    public ReceiptListDto receipt(){
         return wishListService.searchReceipt();
     }
 }

@@ -13,14 +13,14 @@
     <!-- search -->
     <div class="row">
         <div class="col-sm-6 col-md-8">
-            <input id="searchBox" style="height: 46px" class="form-control form-control-lg" type="text" placeholder="맛집을 검색해주세요 ex.(판교 치킨)" value="맛있는 거를 입력해주세요.">
+            <input id="searchBox" style="height: 46px" class="form-control form-control-lg" type="text" placeholder="맛집을 검색해주세요 ex.(판교 치킨)" value="폴바셋">
         </div>
         <div class="col-sm-6 col-md-4">
             <button id="searchButton" type="button" class="btn btn-primary btn-lg" style="width: 100%; border-color: lightpink; background-color: lightpink;">검색</button>
         </div>
-        <p></p>
+        <br/><br/><br/>
         <div class="col-sm-6 col-md-4">
-            <button id="receiptButton" type="button" class="btn btn-primary btn-lg" style="width: 100%; position:relative; left:80%; border-color: lightpink; background-color: lightpink;">레시피 추천해줘!</button>
+            <button id="receiptButton" type="button" class="btn btn-primary btn-lg" style="width:100%; text-align: center ;border-color: lightpink; background-color: lightpink;">레시피 추천해줘!</button>
         </div>
     </div>
 
@@ -28,32 +28,36 @@
     <!-- search result -->
     <div class="row" id="search-result" style="visibility: hidden">
         <div class="col-sm-6 col-md-8">
-            <img id="wish_image" v-bind:src="search_result.imageLink" alt="..." class="img-thumbnail" style="min-width: 100%; min-height: 100%;">
+            <img id="wish_image" v-bind:src="search_result.imagelink" alt="..." class="img-thumbnail" style="width:350px;height:350px;object-fit:cover;">
         </div>
         <div class="col-sm-6 col-md-4">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" id="wish_title">{{search_result.title}}</li>
                 <li class="list-group-item" id="wish_category">{{search_result.category}}</li>
                 <li class="list-group-item" id="wish_address">{{search_result.address}}</li>
-                <li class="list-group-item" id="wish_road_address">{{search_result.roadAddress}}</li>
-                <li class="list-group-item"><a id="wish_link" target="_blank" v-bind:href="search_result.homePageLink">홈페이지</a> </li>
+                <li class="list-group-item"><a id="wish_link" target="_blank" v-bind:href="search_result.pagelink">홈페이지</a> </li>
             </ul>
             <button id="wishButton" type="button" class="btn btn-primary btn-lg" style="width: 93%; position: absolute; bottom: 0; border-color: lightpink; background-color: lightpink;">위시리스트 추가</button>
         </div>
     </div>
+    <br/><br/><br/>
 
+    <div class="row">
+        <div class="alert alert-info col-sm-12 col-md-12" style="text-align: center">
+            레시피 추천
+        </div>
+    </div>
     <!-- search receipt result -->
     <div class="row" id="receipt-result" style="visibility: hidden">
         <div class="col-sm-6 col-md-8">
-            <img id="receipt_image" v-bind:src="receipt_result.imageLink" alt="..." class="img-thumbnail" style="min-width: 100%; min-height: 100%;">
+            <img id="receipt_image" v-bind:src="receipt_result.imagelink" alt="..." class="img-thumbnail" style="width:350px;height:350px;object-fit:cover;">
         </div>
         <div class="col-sm-6 col-md-4">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" id="wish_title1">{{receipt_result.title}}</li>
-                <li class="list-group-item" id="wish_category1">{{receipt_result.link}}</li>
-                <li class="list-group-item" id="wish_address1">{{receipt_result.description}}</li>
-                <li class="list-group-item" id="wish_road_address1">{{receipt_result.bloggername}}</li>
-                <li class="list-group-item"><a id="wish_link1" target="_blank" v-bind:href="receipt_result.homePageLink">홈페이지</a> </li>
+                <li class="list-group-item" id="receipt_title">{{receipt_result.title}}</li>
+                <li class="list-group-item"><a id="receipt_bloggerlink" target="_blank" v-bind:href="receipt_result.bloggerlink">{{receipt_result.bloggerlink}}</a> </li>
+                <li class="list-group-item" id="receipt_bloggername">{{receipt_result.bloggername}}</li>
+                <li class="list-group-item"><a id="receipt_homePageLink" target="_blank" v-bind:href="receipt_result.link">레시피 보러가기</a> </li>
             </ul>
         </div>
     </div>
@@ -72,29 +76,25 @@
             <br/><hr/>
             <div class="row">
                 <div class="col-sm-6 col-md-8">
-                    <img v-bind:src="wish.imageLink"
+                    <img v-bind:src="wish.imagelink"
                          alt="..."
                          class="img-thumbnail"
-                         style="min-width: 100%;
-                         min-height: 100%;"
-                    >
+                         style="width:350px;height:350px;object-fit:cover;">
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">장소 : {{wish.title}}</li>
                         <li class="list-group-item">Category : {{wish.category}}</li>
                         <li class="list-group-item">주소 : {{wish.address}}</li>
-                        <li class="list-group-item">도로명 : {{wish.roadAddress}}</li>
-                        <li class="list-group-item">방명여부 : {{wish.visit}}</li>
+                        <li class="list-group-item">방문여부 : {{wish.visit}}</li>
                         <li class="list-group-item">마지막 방문일자 : {{wish.lastVisitDate}}</li>
                         <li class="list-group-item">방문횟수 : {{wish.visitCount}}</li>
                         <li class="list-group-item">
-                            <a href="http://imf0010.cafe24.com/m/imf0020">홈페이지</a>
-                        </li>
+                            <a href="search_result.pagelink">홈페이지</a>                        </li>
                         <li class="list-group-item">
-                            <button v-on:click="addVisit(wish.index)" type="button" class="btn btn-primary btn-lg" style="width: 100%;">방문 추가</button>
+                            <button v-on:click="addVisit(wish.index)" type="button" class="btn btn-primary btn-lg" style="width: 100%;border-color: lightpink; background-color: lightpink;">방문 추가</button>
                             <br/><br/>
-                            <button v-on:click="deleteWish(wish.index)" type="button" class="btn btn-primary btn-lg" style="width: 100%;">위시리스트 삭제</button>
+                            <button v-on:click="deleteWish(wish.index)" type="button" class="btn btn-primary btn-lg" style="width: 100%;border-color: lightpink; background-color: lightpink;">위시리스트 삭제</button>
                         </li>
                         <li class="list-group-item"></li>
                     </ul>

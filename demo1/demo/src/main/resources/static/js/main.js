@@ -17,12 +17,9 @@
         el: '#receipt-result',
         data: {
             receipt_result : {}
-        },
-        method: {
-            wishButton: function (event) {
-                console.log("add");
-            }
         }
+
+
     });
 
     // 목록 vue object

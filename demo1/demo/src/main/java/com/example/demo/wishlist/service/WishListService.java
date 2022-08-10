@@ -5,6 +5,7 @@ import com.example.demo.naver.dto.SearchBlogRep;
 import com.example.demo.naver.dto.SearchImageRep;
 import com.example.demo.naver.dto.SearchLocalRep;
 import com.example.demo.wishlist.WishListEntity;
+import com.example.demo.wishlist.dto.ReceiptListDto;
 import com.example.demo.wishlist.dto.WishListDto;
 import com.example.demo.wishlist.repository.WishRep;
 import lombok.RequiredArgsConstructor;
@@ -20,16 +21,16 @@ public class WishListService {
     private final NaverClient naverClient;
     private final WishRep wishListRepository;
 
-    public WishListDto searchReceipt() {
+    public ReceiptListDto searchReceipt() {
         var searchBlogReq=new SearchBlogRep();
         searchBlogReq.setQuery("레시피");
 
         var searchBlogRes=naverClient.blogSearch(searchBlogReq);
         if(searchBlogRes.getTotal()>0){
             var item=searchBlogRes.getItems().stream().findAny().get();
-            System.out.println(item);
+           // System.out.println(item);
             var imageQuery=item.getTitle().replaceAll("<[^>]*>","");
-            System.out.println(imageQuery);
+            //System.out.println(imageQuery);
             var searchImageReq=new SearchImageRep();
             searchImageReq.setQuery(imageQuery);
 
@@ -43,19 +44,20 @@ public class WishListService {
                         findAny().
                         get();
 
-                var result=new WishListDto();
-                result.setTitle(item.getTitle());
-                result.setPagelink(item.getLink());
+                var result=new ReceiptListDto();
+                result.setTitle(item.getTitle().replaceAll("<[^>]*>",""));
+                result.setLink(item.getLink());
+                result.setBloggername(item.getBloggername());
+                result.setBloggerlink(item.getBloggerlink());
                 result.setImagelink(imageItem.getLink());
 
-
-                System.out.println(result);
+               //System.out.println(result);
                 return result;
             }
 
         }
         //search image
-        return new WishListDto();
+        return new ReceiptListDto();
     }
 
     public WishListDto search(String query){
@@ -76,7 +78,7 @@ public class WishListService {
                 var imageItem=searchImageRes.getItems().stream().findFirst().get();
 
                 var result=new WishListDto();
-                result.setTitle(item.getTitle());
+                result.setTitle(item.getTitle().replaceAll("<[^>]*>",""));
                 result.setCategory(item.getCategory());
                 result.setAddress(item.getAddress());
                 result.setPagelink(item.getLink());
