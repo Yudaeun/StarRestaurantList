@@ -1,8 +1,8 @@
 
 naver:
   client:
-    id: vwenkemW8AlO1_A47de4
-    secret: kwHkuZbj0h
+    id: 
+    secret: 
   url:
     search:
       blog: "https://openapi.naver.com/v1/search/blog.json"
